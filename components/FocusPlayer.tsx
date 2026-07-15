@@ -227,8 +227,26 @@ export default function FocusPlayer() {
         </section>
       )}
 
+      <footer
+        className="fixed inset-x-0 bottom-3 z-20 flex items-center justify-center gap-1.5 px-4 text-xs text-ink/40"
+        style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+      >
+        <span>Made by – HaXX0R</span>
+        <a
+          href="https://github.com/rifatabdullah"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="HaXX0R on GitHub"
+          className="inline-flex h-8 w-8 items-center justify-center rounded-md transition-opacity hover:opacity-60"
+        >
+          <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+            <path d="M12 .7a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.28-5.27-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.16 1.18a10.9 10.9 0 0 1 5.76 0c2.19-1.49 3.16-1.18 3.16-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.71 5.39-5.29 5.68.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z" />
+          </svg>
+        </a>
+      </footer>
+
       {videoId && remaining !== null && (
-        <div style={{ bottom: "max(1rem, env(safe-area-inset-bottom))", right: "max(1rem, env(safe-area-inset-right))" }} className="fixed z-30 flex min-h-11 items-center gap-3 rounded-md border border-ink/15 bg-canvas px-3 py-2 text-sm text-ink/80 sm:min-h-0">
+        <div style={{ right: "max(1rem, env(safe-area-inset-right))" }} className="fixed bottom-16 z-30 flex min-h-11 items-center gap-3 rounded-md border border-ink/15 bg-canvas px-3 py-2 text-sm text-ink/80 sm:bottom-6 sm:min-h-0">
           <span className="font-mono tabular-nums" aria-live="polite">{timerFinished ? "Time’s up" : formatTime(remaining)}</span>
           <button type="button" onClick={clearTimer} className="text-xs text-ink/50 transition-opacity hover:opacity-60">{timerFinished ? "Dismiss" : "Cancel"}</button>
         </div>
