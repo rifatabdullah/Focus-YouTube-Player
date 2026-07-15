@@ -10,4 +10,5 @@ interface YTPlayer {
   destroy(): void;
   seekTo(seconds: number, allowSeekAhead?: boolean): void;
   playVideo(): void;
+  pauseVideo(): void;
 }
