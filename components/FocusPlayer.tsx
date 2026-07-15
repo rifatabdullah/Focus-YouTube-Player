@@ -201,7 +201,7 @@ export default function FocusPlayer() {
         </section>
       ) : (
         <section className="relative w-full max-w-4xl transition duration-200 ease-out">
-          <div className={`relative z-20 mb-4 flex items-center justify-between transition-opacity duration-200 ${focusMode ? "opacity-30 hover:opacity-100 focus-within:opacity-100" : "opacity-100"}`}>
+          <div className={`relative z-30 mb-4 flex items-center justify-between transition-opacity duration-200 ${focusMode ? "opacity-30 hover:opacity-100 focus-within:opacity-100" : "opacity-100"}`}>
             <button onClick={newVideo} className="text-sm text-ink/65 transition-opacity hover:opacity-60">← New video</button>
             <div className="hidden sm:block">{toggles}</div>
             <div className="relative sm:hidden">
