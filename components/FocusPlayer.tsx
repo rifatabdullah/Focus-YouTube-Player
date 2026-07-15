@@ -165,26 +165,26 @@ export default function FocusPlayer() {
   }
 
   const toggles = (
-    <div className="flex items-center gap-5 text-sm text-ink/65">
+    <div className="flex flex-col items-stretch gap-2 text-sm text-ink/65 sm:flex-row sm:items-center sm:gap-5">
       <div className="relative">
-        <button type="button" onClick={() => setTimerPanelOpen((open) => !open)} className="transition-opacity hover:opacity-60">Timer</button>
+        <button type="button" onClick={() => setTimerPanelOpen((open) => !open)} className="flex min-h-11 w-full items-center transition-opacity hover:opacity-60 sm:min-h-0 sm:w-auto">Timer</button>
         {timerPanelOpen && (
-          <div className="absolute right-0 top-8 z-50 w-56 rounded-lg border border-ink/10 bg-canvas p-3 text-ink">
+          <div className="fixed inset-x-4 top-24 z-50 rounded-lg border border-ink/10 bg-canvas p-4 text-ink sm:absolute sm:inset-x-auto sm:right-0 sm:top-8 sm:w-56 sm:p-3">
             <label htmlFor="timer-minutes" className="mb-2 block text-xs text-ink/60">Minutes</label>
             <div className="flex gap-2">
-              <input id="timer-minutes" type="number" min="1" max="999" value={timerMinutes} onChange={(e) => { setTimerMinutes(e.target.value); setTimerError(""); }} onKeyDown={(e) => { if (e.key === "Enter") startTimer(); }} className="min-w-0 flex-1 rounded-md border border-ink/15 bg-transparent px-2 py-1.5 text-sm outline-none focus:border-accent" />
-              <button type="button" onClick={startTimer} className="rounded-md border border-ink/15 px-3 py-1.5 font-semibold transition-opacity hover:opacity-65">Start</button>
+              <input id="timer-minutes" type="number" inputMode="numeric" min="1" max="999" value={timerMinutes} onChange={(e) => { setTimerMinutes(e.target.value); setTimerError(""); }} onKeyDown={(e) => { if (e.key === "Enter") startTimer(); }} className="min-h-11 min-w-0 flex-1 rounded-md border border-ink/15 bg-transparent px-3 py-2 text-base outline-none focus:border-accent sm:min-h-0 sm:px-2 sm:py-1.5 sm:text-sm" />
+              <button type="button" onClick={startTimer} className="min-h-11 rounded-md border border-ink/15 px-4 py-2 font-semibold transition-opacity hover:opacity-65 sm:min-h-0 sm:px-3 sm:py-1.5">Start</button>
             </div>
             {timerError && <p className="mt-2 text-xs text-ink/60" role="alert">{timerError}</p>}
           </div>
         )}
       </div>
-      <label className="flex cursor-pointer items-center gap-2"><input type="checkbox" checked={focusMode} onChange={(e) => setFocusMode(e.target.checked)} className="h-4 w-4 accent-accent" /> Focus mode</label>
+      <label className="flex min-h-11 cursor-pointer items-center gap-2 sm:min-h-0"><input type="checkbox" checked={focusMode} onChange={(e) => setFocusMode(e.target.checked)} className="h-5 w-5 accent-accent sm:h-4 sm:w-4" /> Focus mode</label>
     </div>
   );
 
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-canvas px-4 py-12 text-ink sm:px-8">
+    <main className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden bg-canvas px-3 py-6 text-ink sm:min-h-screen sm:px-8 sm:py-12">
       {focusMode && videoId && <div className="pointer-events-none fixed inset-0 z-10 bg-black/90 backdrop-blur-sm" aria-hidden="true" />}
 
       {!videoId ? (
@@ -205,8 +205,8 @@ export default function FocusPlayer() {
             <button onClick={newVideo} className="text-sm text-ink/65 transition-opacity hover:opacity-60">← New video</button>
             <div className="hidden sm:block">{toggles}</div>
             <div className="relative sm:hidden">
-              <button aria-label="Player settings" aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)} className="rounded-md border border-ink/10 p-2 text-ink/65"><SlidersIcon /></button>
-              {menuOpen && <div className="absolute right-0 top-12 z-40 w-44 rounded-lg border border-ink/10 bg-canvas p-4">{toggles}</div>}
+              <button aria-label="Player settings" aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)} className="flex h-11 w-11 items-center justify-center rounded-md border border-ink/10 text-ink/65"><SlidersIcon /></button>
+              {menuOpen && <div className="absolute right-0 top-12 z-40 w-52 rounded-lg border border-ink/10 bg-canvas p-3">{toggles}</div>}
             </div>
           </div>
 
@@ -228,7 +228,7 @@ export default function FocusPlayer() {
       )}
 
       {videoId && remaining !== null && (
-        <div className="fixed bottom-4 right-4 z-30 flex items-center gap-3 rounded-md border border-ink/15 bg-canvas px-3 py-2 text-sm text-ink/80 sm:bottom-6 sm:right-6">
+        <div style={{ bottom: "max(1rem, env(safe-area-inset-bottom))", right: "max(1rem, env(safe-area-inset-right))" }} className="fixed z-30 flex min-h-11 items-center gap-3 rounded-md border border-ink/15 bg-canvas px-3 py-2 text-sm text-ink/80 sm:min-h-0">
           <span className="font-mono tabular-nums" aria-live="polite">{timerFinished ? "Time’s up" : formatTime(remaining)}</span>
           <button type="button" onClick={clearTimer} className="text-xs text-ink/50 transition-opacity hover:opacity-60">{timerFinished ? "Dismiss" : "Cancel"}</button>
         </div>
